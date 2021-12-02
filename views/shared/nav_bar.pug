@@ -1,0 +1,26 @@
+mixin nav-bar      
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark rounded")
+        div(class="container-fluid d-flex")
+            a(class="navbar-brand" href="/")
+                img(src="https://sauveteurdudunkerquois.fr/wp-content/uploads/2021/09/LOGO-DUO.png" width="60" class="d-inline-block align-top" alt="")
+                |  Sauveteurs du Dunkerquois
+            button(class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation")
+                span(class="navbar-toggler-icon")
+            div(class="collapse navbar-collapse"  id="navbarNavDropdown")
+                ul(class="navbar-nav")
+                    li(class="nav-item")
+                        a(class="nav-link active" aria-current="page" href="/") Accueil 
+                    li(class="nav-item")   
+                        a(class="nav-link" href="/missions") Missions
+                    li(class="nav-item")
+                        a(class="nav-link" href="/sauveteurs") Sauvetages
+                    li(class='nav-item dropdown')
+                        a(class='nav-link dropdown-toggle' href='#' id='languageDropdown' role='button' data-bs-toggle='dropdown' aria-expand='false') Langue
+                        ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='languageDropdown')
+                            li
+                                a.dropdown-item(href='/config/lang/fr?q=/') Fr 
+                            li
+                                a.dropdown-item(href='/config/lang/en?q=/') En 
+            form(class=" d-flex flex-grow-1" action="/search")
+                input(class="form-control me-2", name="q", type="search", placeholder="Search", aria-label="Search")
+                button(class="btn btn-outline-success", type="submit") Recherche

@@ -1,0 +1,6 @@
+extends layout
+include shared/search_result
+
+block content
+    each item in sauveteurs
+        +sauveteur-result(item.nom, item.prenom, item.date_naissance, item.date_mort, item.id)
