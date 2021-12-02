@@ -1,6 +1,6 @@
 mixin sauveteur-result(nom, prenom, naissance, deces, id)
     div.card.text-right.my-3
-        div.card-body
+        div.card-body.darkmode2
             h5.card-title #{nom} #{prenom} (#{naissance.getFullYear()}-#{deces.getFullYear()})
             a.btn.btn-primary(href="/sauveteurs/" + id) Plus de détails
 

@@ -8,6 +8,9 @@ a {
   color: #00B7FF;
 }
 .darkmode{
+  background-color:rgb(77, 77, 77);
+}
+.darkmode2{
   background-color:grey;
 }
 
