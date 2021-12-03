@@ -1,3 +1,25 @@
 extends layout
+include shared/search_bar
+
+mixin element-carousel(bg_url, frt, ent, frph, enph, uri, lang)
+    div(class="d-flex flex-column h-100 justify-content-center align-items-center" style='background-position: center; background-size: 100%; background-image: url("' + bg_url + '"); background-repeat: no-repeat no-repeat')
+        div.p-2.flex-grow-1.bd-hightlight
+        h1.bg-dark.text-light=(lang === "en" ? ent : frt)
+        +search-bar(frph, enph, uri, lang)
+        div.p-2.flex-grow-1.bd-hightlight
 
 block content
+    div.carousel.slide.h-50(id="carouselSearchControls", data-bs-ride="carousel")
+        div.carousel-inner.h-100.rounded.mt-2
+            div.carousel-item.active.h-100
+                +element-carousel("/images/sauveteurs.jpg", "Sauveteurs", "Rescuers", "Rechercher sauveteurs", "Search rescuers", "/search/sauveteurs", lang)
+            div.carousel-item.h-100
+                +element-carousel("/images/missions.jpg", "Missions", "Missions", "Rechercher missions", "Search missions", "/search/missions", lang)
+            div.carousel-item.h-100
+                +element-carousel("/images/bateaux.jpg", "Bateaux", "Boats", "Rechercher bateaux", "Search boats", "/search/bateaux", lang)
+        button.carousel-control-prev(type="button" data-bs-target="#carouselSearchControls" data-bs-slide="prev")
+            span.carousel-control-prev-icon(aria-hidden="true")
+            span.visually-hidden Previous
+        button.carousel-control-next(type="button" data-bs-target="#carouselSearchControls" data-bs-slide="next")
+            span.carousel-control-next-icon(aria-hidden="true")
+            span.visually-hidden Next

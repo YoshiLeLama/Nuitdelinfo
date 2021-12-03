@@ -1,21 +1,47 @@
 extends layout
 
-mixin date-naissance(date, lieu)
-    p='Né' + (date ? ' le ' + date.toLocaleDateString() : '') + (lieu ? " à " + lieu : '')
+mixin fr-date-naissance(date, lieu)
+    p.card-text='Né le ' + date.toLocaleDateString("fr-FR") + (lieu ? " à " + lieu : '')
 
-mixin date-mort(date, lieu)
-    p='Mort' + (date ? ' le ' + date.toLocaleDateString() : '') + (lieu ? " à " + lieu : '')
+mixin en-date-naissance(date, lieu)
+    p.card-text='Born ' + date.toLocaleDateString("en-US") + (lieu ? ' in ' + lieu : '')
+
+mixin fr-date-mort(date, lieu)
+    p.card-text='Mort le ' + date.toLocaleDateString("fr-FR") + (lieu ? " à " + lieu : '')
+
+mixin en-date-mort(date, lieu)
+    p.card-text='Died ' + date.toLocaleDateString("en-US") + (lieu ? " in " + lieu : '')
+
+mixin fr-desc(data)
+    +fr-date-naissance(data.date_naissance, data.lieu_naissance)
+    +fr-date-mort(data.date_mort, data.lieu_mort)
+    p.card-text=data.nombre_missions + " missions réalisées"
+    p.card-text=data.equipages_sauves + " équipages sauvés"
+    p.card-text=data.personnes_sauvees + " personnes sauvées"
+
+mixin en-desc(data)
+    +en-date-naissance(data.date_naissance, data.lieu_naissance)
+    +en-date-mort(data.date_mort, data.lieu_mort)
+    p.card-text=data.nombre_missions + " missions carried out"
+    p.card-text=data.equipages_sauves + " saved crews"
+    p.card-text=data.personnes_sauvees + " saved people"
 
 block content
-    div.card.mb-3(style="max-width: 500px")
-        div.row.g-0
-            div.col-md-4
-                img.img-fluid.rounded-start(src=data.photo)
-            div.col-md-8
-                div.card-body
-                    h5.card-title=data.nom + ' ' + data.prenom
-                    p.card-text=data.nombre_missions + " missions réalisées"
-                    p.card-text=data.equipages_sauves + " équipages sauvés"
-                    p.card-text=data.personnes_sauvees + " personnes sauvées"
+    - var lang_code = (lang === "en" ? "en-US" : "fr-FR")
+    div.d-flex.flex-row.justify-content-center.mt-3
+        div.card.mb-3.bg-dark(style="max-width: 500px")
+            div.row.g-0
+                div.col-md-4.h-100
+                    if !data.photo || data.photo===""
+                        p.text-center.text-light.align-middle=(lang==="en" ? "No photo available" : "Pas de photo disponible")
+                    else
+                        img.img-fluid.rounded-start(src=data.photo)
+                div.col-md-8
+                    div.card-body.darkmode2
+                        h5.card-title=data.nom + ' ' + data.prenom
+                        if lang === "en"
+                            +en-desc(data)
+                        else
+                            +fr-desc(data)
 
-     
+        

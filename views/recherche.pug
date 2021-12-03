@@ -1,6 +1,39 @@
 extends layout
 include shared/search_result
 
+mixin fr-title(amount, q)
+    if amount === 0
+        h2 Pas de résultats pour "#{q}"
+    else
+        h2 Résultats pour "#{q}"
+
+mixin en-title(amount, q)
+    if amount === 0
+        h2 No results for "#{q}"
+    else
+        h2 Results for "#{q}"
+
 block content
-    each item in resultats
-        +sauveteur-result(item.nom, item.prenom, item.date_naissance, item.date_mort, item.id)
+    - var results_nb = resultats ? resultats.length : (sauveteurs.length + missions.length + bateaux.length)
+    div.text-center.p-3
+        if lang === "en"
+            +en-title(results_nb, q)
+        else
+            +fr-title(results_nb, q)
+    if type==="sauveteurs"
+        each item in resultats
+            +sauveteur-result(item.nom, item.prenom, item.date_naissance, item.date_mort, item.id, lang, true)
+    else if type==="missions"
+        each item in resultats
+            +mission-result(item.nom, item.date, item.succes, item.id, lang, true)
+    else if type==="bateaux"
+        each item in resultats
+            +bateau-result(item.nom, item.date, item.constructeur, item.id, lang, true)
+    else if type==="all"
+        each item in sauveteurs
+            +sauveteur-result(item.nom, item.prenom, item.date_naissance, item.date_mort, item.id, lang, true)
+        each item in missions
+            +mission-result(item.nom, item.date, item.succes, item.id, lang, true)
+        each item in bateaux
+            +bateau-result(item.nom, item.date, item.constructeur, item.id, lang, true)
+    div.pb-2

@@ -9,6 +9,7 @@ const sauveteurs = require('./routes/sauveteurs');
 const missions = require('./routes/missions');
 const search = require('./routes/search');
 const configRouter = require('./routes/config')
+const bateaux = require('./routes/bateaux')
 var app = express();
 
 // view engine setup
@@ -26,6 +27,7 @@ app.use('/missions',missions);
 app.use('/sauveteurs',sauveteurs);
 app.use('/search', search);
 app.use('/config', configRouter)
+app.use('/bateaux', bateaux)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

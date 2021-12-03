@@ -1,0 +1,7 @@
+mixin search-bar(frph, enph, uri, lang)
+    - var search_ph = (lang==="en" ? enph : frph)
+    - var button_text = (lang==="en" ? "Search" : "Rechercher")
+    div
+        form(class="d-flex flex-grow-1 " ,action=uri)&attributes(attributes)
+            input(class="form-control me-2", name="q", type="search", placeholder=search_ph, aria-label="Search", style="background-color: #474747; color: white;")
+            button(class="btn btn-primary", type="submit")=button_text

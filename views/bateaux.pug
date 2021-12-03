@@ -1,0 +1,7 @@
+extends layout
+include shared/search_result
+
+block content
+    +search-bar("Rechercher bateaux", "Search boats", "/search/bateaux", lang).mt-2
+    each item in bateaux 
+        +bateau-result(item.nom,item.date,item.constructeur, item.id, lang)

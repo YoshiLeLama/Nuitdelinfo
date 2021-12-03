@@ -2,5 +2,6 @@ extends layout
 include shared/search_result
 
 block content
+    +search-bar("Rechercher sauveteurs", "Search rescuers", "/search/sauveteurs", lang).mt-2
     each item in sauveteurs
-        +sauveteur-result(item.nom, item.prenom, item.date_naissance, item.date_mort, item.id)
+        +sauveteur-result(item.nom, item.prenom, item.date_naissance, item.date_mort, item.id, lang)

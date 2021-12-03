@@ -1,4 +1,11 @@
-mixin nav-bar      
+include search_bar
+
+mixin language-modifier(code, name)
+    a.dropdown-item(onclick='window.location.replace(`/config/lang/' + code + '?q=${window.location}`)')
+        button.invisible
+            img.visible(src="/images/" + code + ".png" height="24")
+
+mixin nav-bar(lang)
     nav(class="navbar navbar-expand-lg navbar-dark bg-dark rounded")
         div(class="container-fluid d-flex")
             a(class="navbar-brand" href="/")
@@ -9,18 +16,19 @@ mixin nav-bar
             div(class="collapse navbar-collapse"  id="navbarNavDropdown")
                 ul(class="navbar-nav")
                     li(class="nav-item")
-                        a(class="nav-link active" aria-current="page" href="/") Accueil 
+                        a(class="nav-link active" aria-current="page" href="/")=(lang==="en" ? "Home" : "Accueil") 
                     li(class="nav-item")   
                         a(class="nav-link" href="/missions") Missions
                     li(class="nav-item")
-                        a(class="nav-link" href="/sauveteurs") Sauvetages
+                        a(class="nav-link" href="/sauveteurs")=(lang==="en" ? "Rescuers" : "Sauveteurs")
+                    li(class="nav-item")
+                        a(class="nav-link" href="/bateaux")=(lang==="en" ? "Boats" : "Bateaux")
                     li(class='nav-item dropdown')
-                        a(class='nav-link dropdown-toggle' href='#' id='languageDropdown' role='button' data-bs-toggle='dropdown' aria-expand='false') Langue
-                        ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='languageDropdown')
+                        a(class='nav-link dropdown-toggle' href='#' id='languageDropdown' role='button' data-bs-toggle='dropdown' aria-expand='false')=(lang==="en" ? "Language" : "Langue")
+                        ul.dropdown-menu.dropdown-menu-dark.w-10(aria-labelledby='languageDropdown')
                             li
-                                a.dropdown-item(href='/config/lang/fr?q=/') Fr 
+                                +language-modifier("fr", "Fr") 
                             li
-                                a.dropdown-item(href='/config/lang/en?q=/') En 
-            form(class=" d-flex flex-grow-1" action="/search")
-                input(class="form-control me-2", name="q", type="search", placeholder="Search", aria-label="Search")
-                button(class="btn btn-outline-success", type="submit") Recherche
+                                +language-modifier("en", "En")
+            +search-bar("Rechercher", "Search", "/search", lang)
+    button.invisible(type="button" class="btn btn-outline-danger d-flex align-items-end justify-content-center") Konami Code ? 

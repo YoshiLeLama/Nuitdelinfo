@@ -1,7 +1,30 @@
-mixin sauveteur-result(nom, prenom, naissance, deces, id)
+mixin sauveteur-result(nom, prenom, naissance, deces, id, lang, preciseType=false)
     div.card.text-right.my-3
+        if preciseType
+            h5.card-header=(lang==="en" ? "Rescuer" : "Sauveteur")
         div.card-body.darkmode2
             h5.card-title #{nom} #{prenom} (#{naissance.getFullYear()}-#{deces.getFullYear()})
-            a.btn.btn-primary(href="/sauveteurs/" + id) Plus de détails
+            a(href="/sauveteurs/" + id)
+                button.btn.btn-dark(type="button")=(lang === "en" ? "More details" : "Plus de détails")
 
+mixin mission-result(nom,date,succes, id, lang, preciseType=false)
+    div.card.text-right.my-3
+        if preciseType
+            h5.card-header Mission
+        div.card-body.darkmode2
+            h5.card-title #{nom} 
+            p.card-text #{date.getFullYear()}
+            p.card-text #{succes}
+            a(href="/missions/" + id)
+                button.btn.btn-dark(type="button")=(lang === "en" ? "More details" : "Plus de détails")
 
+mixin bateau-result(nom, date, constructeur, id, lang, preciseType=false)
+    div.card.text-right.my-3
+        if preciseType
+            h5.card-header=(lang==="en" ? "Boat" : "Bateau")
+        div.card-body.darkmode2
+            h5.card-title #{nom} 
+            p.card-text #{date}
+            p.card-text #{constructeur}
+            a(href="/bateaux/" + id)
+                button.btn.btn-dark(type="button")=(lang === "en" ? "More details" : "Plus de détails")

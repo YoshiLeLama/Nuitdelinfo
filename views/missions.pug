@@ -1,5 +1,7 @@
 extends layout
-
+include shared/search_result
 
 block content 
-    
+    +search-bar("Rechercher missions", "Search missions", "/search/missions", lang).mt-2
+    each item in missions 
+        +mission-result(item.nom,item.date,item.success, item.id, lang)

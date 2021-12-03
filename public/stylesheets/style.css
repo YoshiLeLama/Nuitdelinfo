@@ -13,3 +13,12 @@ a {
 .darkmode2{
   background-color:grey;
 }
+
+.btn-primary {
+  background-color: grey !important;
+  border-color: lightslategrey !important;
+}
+
+.input::placeholder {
+  color: whitesmoke !important
+}

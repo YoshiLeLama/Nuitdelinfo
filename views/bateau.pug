@@ -1,18 +1,15 @@
 extends layout
-include shared/search_bar
-
 mixin en-desc(data)
-    p(class="card-text")=data.date.toLocaleDateString("en-US")
-    p(class="card-text")=data.succes+ ' saved crews'
+    p(class="card-text")='Build by ' + data.constructeur
 mixin fr-desc(data)
-    p(class="card-text")=data.date.toLocaleDateString("fr-FR")
-    p(class="card-text")=data.succes +" équipages sauvés"
-block content
+    p(class="card-text")='Construit par ' + data.constructeur
+block content 
     div.d-flex.flex-row.justify-content-center.mt-3
         div.card.mb-3(style="max-width: 500px")
             div.row.g-0
                 div.card-body.darkmode2
-                    h5.card-tytle=data.nom 
+                    h5.card-title=data.date + ' ' + data.nom
+                    p(class="card-text")=data.date
                     if lang === "en"
                         +en-desc(data)
                     else
