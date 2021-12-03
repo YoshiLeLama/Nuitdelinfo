@@ -15,7 +15,7 @@ mixin en-title(amount, q)
 
 block content
     - var results_nb = resultats ? resultats.length : (sauveteurs.length + missions.length + bateaux.length)
-    div.text-center.p-3
+    div.text-center.p-3.results-title
         if lang === "en"
             +en-title(results_nb, q)
         else
