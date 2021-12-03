@@ -3,10 +3,10 @@ include shared/search_bar
 
 mixin en-desc(data)
     p(class="card-text")=data.date.toLocaleDateString("en-US")
-    p(class="card-text")=data.succes+ ' saved crews'
+    p(class="card-text")=data.succes+ ' saved crew' + (data.succes > 1 ? 's' : '')
 mixin fr-desc(data)
     p(class="card-text")=data.date.toLocaleDateString("fr-FR")
-    p(class="card-text")=data.succes +" équipages sauvés"
+    p(class="card-text")=data.succes + (data.succes > 1 ? " équipages sauvés" : " équipage sauvé")
 block content
     div.d-flex.flex-row.justify-content-center.mt-3
         div.card.mb-3(style="max-width: 500px")

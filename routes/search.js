@@ -24,6 +24,9 @@ router.get('/missions', (req, res, next) => {
 });
 
 router.get('/bateaux', (req, res, next) => {
+    if (typeof(req.query.q) === "string" && req.query.q.toLowerCase().trim() === "black pearl")
+        res.redirect("https://www.youtube.com/watch?v=yRh-dzrI4Z4")
+
     findBoatsByName(req.query.q).then(value => res.render('recherche', {type: "bateaux", resultats: value, lang: req.cookies.lang, q: req.query.q}))
 })
 

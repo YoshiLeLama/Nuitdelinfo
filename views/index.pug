@@ -10,7 +10,7 @@ mixin element-carousel(bg_url, frt, ent, frph, enph, uri, lang)
 
 block content
     div.carousel.slide.h-50(id="carouselSearchControls", data-bs-ride="carousel")
-        div.carousel-inner.h-100.rounded.mt-2
+        div.carousel-inner.h-100.rounded
             div.carousel-item.active.h-100
                 +element-carousel("/images/sauveteurs.jpg", "Sauveteurs", "Rescuers", "Rechercher sauveteurs", "Search rescuers", "/search/sauveteurs", lang)
             div.carousel-item.h-100
